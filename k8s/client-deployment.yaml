@@ -27,6 +27,6 @@ spec:
           - name: GRPC_SERVER
             value: server:80
           - name: CALL
-            value: "10000"
+            value: "100000"
         name: client
         imagePullPolicy: Never

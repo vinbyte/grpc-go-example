@@ -2,26 +2,14 @@ version: '3.8'
 services:
   server:
     image: grpc-example-server 
-    # container_name: go-grpc-server
     build:
       context: server
       dockerfile: Dockerfile
     ports:
       - 50051:50051
     restart: on-failure
-    # labels:
-      # kompose.service.type: "LoadBalancer"
-      # kompose.controller.type: "deployment"
-      # kompose.image-pull-policy: "Never"
-      # kompose.service.expose: "grpc.dev.local"
-      # kompose.service.type: "nodeport"
-      # kompose.service.expose.tls-secret: "dev-internal"
-      # kompose.service.expose.ingress-class-name: "nginx"
-      # kompose.service.external-traffic-policy: "cluster"
-      # nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
   client:
     image: grpc-example-client
-    # container_name: go-grpc-client
     build:
       context: client
       dockerfile: Dockerfile
@@ -32,6 +20,3 @@ services:
       - GRPC_SERVER=server:50051
       - CALL=1000
       - GODEBUG=http2debug=2
-    # labels:
-      # kompose.image-pull-policy: "Never"
-      # kompose.controller.type: "deployment"
